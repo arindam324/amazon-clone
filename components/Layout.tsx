@@ -17,10 +17,10 @@ const Layout: React.FC<{ children: ReactNode }> = ({children}) => {
 
     return (
         <main className={"relative pb-72 min-h-screen"}>
-            <Suspense fallback={null}>
-                {isLarge ? <DesktopHeader/> : <Header/>}
-            </Suspense>
-
+            {/*<Suspense fallback={null}>*/}
+            {/*    {isLarge ? <DesktopHeader/> : <Header/>}*/}
+            {/*</Suspense>*/}
+            <DesktopHeader/>
             {children}
             <Footer/>
         </main>
