@@ -2,12 +2,18 @@ import type {GetServerSideProps, NextPage} from "next";
 import Head from "next/head";
 import Image from "next/image";
 
-import Layout from "../components/Layout";
+
+const Layout = dynamic(()=>import('../components/Layout'),{
+    ssr:false,
+
+})
+// import Layout from "../components/Layout";
 import Product, {ProductProps} from "../components/Product";
 
 
 import {collection, getDocs} from "firebase/firestore";
 import {db} from "../utils/firebase";
+import dynamic from "next/dynamic";
 
 const Home: NextPage<{ data: ProductProps[] }> = ({data}) => {
     console.log(data)
@@ -18,7 +24,7 @@ const Home: NextPage<{ data: ProductProps[] }> = ({data}) => {
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
             <Layout>
-                <div className="relative w-full h-36">
+                <div className="relative lg:mt-20 w-full h-36 lg:h-[300px]">
                     <Image
                         src="https://m.media-amazon.com/images/I/71usv3CIbTL._SX3000_.jpg"
                         fill
@@ -26,7 +32,7 @@ const Home: NextPage<{ data: ProductProps[] }> = ({data}) => {
                         alt=""
                     />
                 </div>
-                <div className={"w-[90%] pb-4 mx-auto space-y-3"}>
+                <div className={"w-[90%] grid lg:grid-cols-4 gap-8 lg:-mt-16 pb-4 mx-auto space-y-3"}>
                     {data.map((item) => (
                         <Product
                             id={item.id}

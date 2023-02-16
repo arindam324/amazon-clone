@@ -8,18 +8,19 @@ const Cart = () => {
     return (
         <div className={"w-full min-h-screen"}>
             <Layout>
-                <div className={"mt-4 w-full"}>
+                <div className={"mt-4 lg:mt-0 w-full"}>
                     {items.map(item => (
-                        <div className={"flex flex-col w-full items-center p-4"} key={item.item.id}>
-                            <div className={"relative w-20 h-20 w-full"}>
-                                <Image src={item.item.image} className={"object-contain"} fill alt={""}/>
+                        <div className={"flex flex-col lg:flex-row pt-12 mx-auto lg:space-x-8 lg:justify-center max-w-6xl  items-center p-4"}
+                             key={item.item.id}>
+                            <div className={"relative  w-20 h-20 lg:h-[600px] lg:w-[600px] "}>
+                                <Image src={item.item.image} className={"object-contain "} fill alt={""}/>
                             </div>
-                            <p className={"text-sm "}>{item.item.description}</p>
-                            <div className={"w-full mt-2 flex items-center space-x-4"}>
-
-
-                                <p className={"text-xl font-semibold"}>{`$${item.item.price}`}</p>
-                                <p>Quality:<span className={"font-semibold"}> {item.quantity}</span></p>
+                            <div>
+                                <p className={"text-sm lg:text-2xl w-full lg:max-w-[70%]"}>{item.item.description}</p>
+                                <div className={"w-full mt-2 flex items-center space-x-4"}>
+                                    <p className={"text-xl font-semibold"}>{`₹${item.item.price}`}</p>
+                                    <p>Quality:<span className={"font-semibold"}> {item.quantity}</span></p>
+                                </div>
                             </div>
                         </div>
                     ))}
