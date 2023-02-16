@@ -21,7 +21,7 @@ const DesktopHeader = () => {
                 <div onClick={() => router.push("/")} className="w-32 h-8 relative">
                     <Image
                         fill
-                        src="https://pngimg.com/uploads/amazon/amazon_PNG11.png"
+                        src="/amazon.png"
                         alt=""
                     />
                 </div>
