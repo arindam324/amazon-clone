@@ -64,7 +64,7 @@ const DesktopHeader = () => {
                     </div>
                     <div className={"cursor-pointer"} onClick={() => router.push("/cart")}>
                         <div className={"bg-yellow-400 grid place-items-center w-6 h-6 rounded-full"}>
-                            {items.length}
+                            {items?.length}
                         </div>
                         <ShoppingCartIcon className="h-6"/>
                     </div>
