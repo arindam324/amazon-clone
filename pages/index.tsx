@@ -2,9 +2,10 @@ import type {GetServerSideProps, NextPage} from "next";
 import Head from "next/head";
 import Image from "next/image";
 
+import {Suspense} from 'react'
 
-const Layout = dynamic(()=>import('../components/Layout'),{
-    ssr:false,
+const Layout = dynamic(() => import('../components/Layout'), {
+    ssr: false,
 
 })
 // import Layout from "../components/Layout";
@@ -23,28 +24,30 @@ const Home: NextPage<{ data: ProductProps[] }> = ({data}) => {
                 <title>Amazon Clone</title>
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
-            <Layout>
-                <div className="relative lg:mt-20 w-full h-36 lg:h-[300px]">
-                    <Image
-                        src="https://m.media-amazon.com/images/I/71usv3CIbTL._SX3000_.jpg"
-                        fill
-                        className="mask_image"
-                        alt=""
-                    />
-                </div>
-                <div className={"w-[90%] grid lg:grid-cols-4 gap-8 lg:-mt-16 pb-4 mx-auto space-y-3"}>
-                    {data.map((item) => (
-                        <Product
-                            id={item.id}
-                            key={item.id}
-                            description={item.description}
-                            image={item.image}
-                            price={item.price}
-                            rating={item.rating}
+            <Suspense fallback={null}>
+                <Layout>
+                    <div className="relative lg:mt-20 w-full h-36 lg:h-[300px]">
+                        <Image
+                            src="https://m.media-amazon.com/images/I/71usv3CIbTL._SX3000_.jpg"
+                            fill
+                            className="mask_image"
+                            alt=""
                         />
-                    ))}
-                </div>
-            </Layout>
+                    </div>
+                    <div className={"w-[90%] grid lg:grid-cols-4 gap-8 lg:-mt-16 pb-4 mx-auto space-y-3"}>
+                        {data.map((item) => (
+                            <Product
+                                id={item.id}
+                                key={item.id}
+                                description={item.description}
+                                image={item.image}
+                                price={item.price}
+                                rating={item.rating}
+                            />
+                        ))}
+                    </div>
+                </Layout>
+            </Suspense>
         </div>
     );
 };
